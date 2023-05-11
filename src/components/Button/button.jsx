@@ -1,7 +1,7 @@
-import styles from './Button.module.css';
+import styles from './button.module.css';
 
 export default function Button({ children, ...props }) {
     return (
-        <Button className={styles.button} {...props}>{children}</Button>
+        <button className={styles.button} {...props}>{children}</button>
     )
 }
