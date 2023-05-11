@@ -13,7 +13,7 @@ export default function Login() {
                     <Input type="email" placeholder="Seu email" />
                     <Input type="password" placeholder="Sua Senha" />
                     <Button>Logar</Button>
-                    <Link href='/cadastro'>Ainda não possui conta?</Link>
+                    <Link className={styles.paragrafo} href='/cadastro'>Ainda não possui conta?</Link>
                 </form>
             </LoginCard>
         </div>

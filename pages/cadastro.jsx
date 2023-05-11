@@ -15,7 +15,7 @@ export default function Cadastro() {
                     <Input type="password" placeholder="Sua Senha" />
                     <Input type="password" placeholder="Confirme sua senha" />
                     <Button>Cadastrar</Button>
-                    <Link href='/login'>Já possui uma conta?</Link>
+                    <Link className={styles.paragrafo} href='/login'>Já possui uma conta?</Link>
                 </form>
             </LoginCard>
         </div>
