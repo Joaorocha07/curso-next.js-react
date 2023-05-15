@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { setCookie } from 'cookies-next';
+// import { setCookie } from 'cookies-next';
 import { useRouter } from 'next/router';
 
 import Link from 'next/link';
@@ -41,10 +41,10 @@ export default function Cadastro() {
 
             if (resposta.status !== 201) throw new Error(json);
 
-            setCookie('authorization', json)
+            // setCookie('authorization', json)
 
-            router.push('/');
-            
+            router.push('/login');
+
             console.log(json);
         } catch (error) {
             setError(error.message)
