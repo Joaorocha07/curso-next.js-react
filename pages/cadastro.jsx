@@ -1,4 +1,6 @@
 import { useState } from 'react';
+import { setCookie } from 'cookies-next';
+import { useRouter } from 'next/router';
 
 import Link from 'next/link';
 import styles from '../styles/Login.module.css';
@@ -15,6 +17,10 @@ export default function Cadastro() {
         confirmSenha: '',
     });
 
+    const [error, setError] = useState('');
+
+    const router = useRouter();
+
     const handleFormEdit = (event, nome) => {
         setFormData({
             ...formData,
@@ -22,9 +28,27 @@ export default function Cadastro() {
         })
     }
     
-    const handleFormSubmit = (event) => {
-        event.preventDefault();
-        console.log(formData)
+    const handleFormSubmit = async (event) => {
+        try {
+            event.preventDefault();
+
+            const resposta = await fetch(`/api/user/cadastro`, {
+                method: 'POST',
+                body: JSON.stringify(formData),
+            })
+
+            const json = await resposta.json();
+
+            if (resposta.status !== 201) throw new Error(json);
+
+            setCookie('authorization', json)
+
+            router.push('/');
+            
+            console.log(json);
+        } catch (error) {
+            setError(error.message)
+        }
     }
 
     return (
@@ -60,6 +84,7 @@ export default function Cadastro() {
                         required 
                     />
                     <Button>Cadastrar</Button>
+                    {error && <p className={styles.error}>{error}</p>}
                     <Link className={styles.paragrafo} href='/login'>Já possui uma conta?</Link>
                 </form>
             </LoginCard>

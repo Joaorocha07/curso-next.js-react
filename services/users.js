@@ -16,6 +16,10 @@ function lerToken(token) {
     }
 }
 
+export function validaToken(token) {
+    return lerToken(token);
+}
+
 export function cadastro(body) {
     const user = users.find(({ email }) => email  === body.email);
     
